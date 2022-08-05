@@ -4,7 +4,7 @@ from celery import current_app
 from .telegram_bot import bot
 from celery.schedules import crontab
 
-app = current_app._get_current_object()
+app = current_app._get_current_object()  # Gets current working celery app object
 
 
 @app.task

@@ -1,3 +1,5 @@
+# This fiel initiates celery task manager
+
 import os
 
 from celery import Celery

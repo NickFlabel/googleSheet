@@ -15,7 +15,7 @@ def SPA(request):
     return render(request, 'sheet/SPA.html', ctx)
 
 
-@api_view
+@api_view(["GET"])
 def renew_sheet(request):
     """This view is created for google sheets script that makes a request to this api when the sheet has been changed
     in order for cellery to initiate new fetch from the google sheets. For this to work there must be a constant adress

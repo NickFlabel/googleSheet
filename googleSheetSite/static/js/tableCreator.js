@@ -8,6 +8,7 @@ let getSheetData = async() => {
 }
 
 class SheetData extends React.Component {
+// This component builds the table and accepts the fetched JSON sheet data from API
     constructor(props) {
         super(props)
     }
@@ -36,6 +37,7 @@ class SheetData extends React.Component {
 }
 
 class SheetRow extends React.Component {
+// This component builds individual rows
     constructor(props) {
         super(props);
     }
