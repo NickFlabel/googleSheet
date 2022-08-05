@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <title>Sheet</title>
+</head>
+<body>
+<h1>Таблица Заказов</h1>
+<div id="table-space">
+</div>
+</body>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<script type="text/babel" src="{% static 'js/tableCreator.js' %}"></script>
+
+</html>

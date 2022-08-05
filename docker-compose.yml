@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis
+    restart: always
+
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '7777:5432'
+
+  web:
+    restart: always
+    build: .
+    command: sh -c "cd googleSheetSite && python manage.py makemigrations sheet --noinput && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+
+  bot:
+    restart: always
+    build: .
+    command: sh -c "cd googleSheetSite && python manage.py runbot"
+    ports:
+      - "8001:8001"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+
+  worker:
+    restart: always
+    build: .
+    command: ['celery', '--workdir=./googleSheetSite', '-A', 'googleSheetSite', 'worker']
+    depends_on:
+      - redis
+      - web
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  celery-beats:
+    restart: always
+    build: .
+    command: [ 'celery', '--workdir=./googleSheetSite', '-A', 'googleSheetSite', 'beat', '-l', 'INFO' ]
+    depends_on:
+      - redis
+      - db
+      - web
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
