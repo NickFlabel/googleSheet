@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, IntegerField, Serializer
 from .models import Sheet
 
 
@@ -8,3 +8,7 @@ class SheetSerializer(ModelSerializer):
     class Meta:
         model = Sheet
         fields = '__all__'
+
+
+class TotalSerializer(Serializer):
+    total_sum = IntegerField()

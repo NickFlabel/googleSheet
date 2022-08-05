@@ -43,5 +43,5 @@ def periodic_messaging():
 def setup_periodic_tasks(sender, **kwargs):
     """This function sets up the constant fetching of the data from Google Sheet
     """
-    sender.add_periodic_task(crontab(minute=0, hour=9), periodic_messaging.s(), name="periodic messages")
-    sender.add_periodic_task(5.0, save_sheet_in_the_db.s(), name='Fetch sheet data')
+    sender.add_periodic_task(crontab(minute=00, hour=9), periodic_messaging.s(), name="periodic messages") # Change 1st argument for changing the frequency of messages (i.e. (1, ...) - for messeging every second)
+    sender.add_periodic_task(5.0, save_sheet_in_the_db.s(), name='Fetch sheet data') # This task fetches sheet data every 5 seconds

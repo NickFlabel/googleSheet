@@ -2,19 +2,38 @@
 {% load static %}
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
     <title>Sheet</title>
 </head>
 <body>
-<h1>Таблица Заказов</h1>
-<div id="table-space">
+<div class="container">
+    <div class="row" style="width: 100%; background-color: #71b54e;">
+        <div class="col" style="height: 15rem">
+            <h1 style="text-align: center;">Таблица заказов</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="total">
+            </div>
+        </div>
+        <div class="col">
+            <div id="table-space">
+            </div>
+        </div>
+    </div>
 </div>
 </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 	<script type="text/babel" src="{% static 'js/tableCreator.js' %}"></script>
+	<script type="text/babel" src="{% static 'js/total.js' %}"></script>
 
 </html>

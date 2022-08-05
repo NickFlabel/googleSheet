@@ -4,7 +4,7 @@ from . import tasks
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import SheetSerializer
+from .serializers import SheetSerializer, TotalSerializer
 
 
 def SPA(request):
@@ -31,4 +31,14 @@ def get_sheet(request):
     """
     sheet = Sheet.objects.all().order_by('number_in_table')
     serializer = SheetSerializer(sheet, many=True)
+    return Response(serializer.data)
+
+
+@api_view(["GET"])
+def get_total(request):
+    """This API view provides client with data from the Google Sheets
+    """
+    total = Sheet.total_sum()
+    serializer = TotalSerializer(data={'total_sum': total}, many=False)
+    serializer.is_valid()
     return Response(serializer.data)

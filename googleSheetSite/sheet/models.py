@@ -10,6 +10,12 @@ class Sheet(models.Model):
     date_of_shipping = models.DateField()
     price_in_rubles = models.DecimalField(max_digits=40, decimal_places=2)
 
+    @staticmethod
+    def total_sum():
+        all_orders = Sheet.objects.all()
+        total = sum([order.price_in_dollars for order in all_orders])
+        return total
+
 
 class Chat(models.Model):
     """This model stores all active chats with the bot
