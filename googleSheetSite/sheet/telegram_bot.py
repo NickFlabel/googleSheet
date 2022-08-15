@@ -2,7 +2,7 @@ import telebot
 from .models import Chat
 from django.db.utils import IntegrityError
 
-token = '5542517598:AAHgBzoLXBs51R3-gfEOba7VntsBZdEL1Aw'   #Telegram token
+token = ''   #Telegram token
 
 bot = telebot.TeleBot(token)
 
